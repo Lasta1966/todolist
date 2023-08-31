@@ -1,0 +1,23 @@
+{% extends 'base/main.html' %} <!-- Šis šablonas išplečia 'base/main.html'. Tai reiškia, kad jis paveldės 'base/main.html' struktūrą ir stilių -->
+
+{% block content %} <!-- Prasideda turinio blokas, kuris bus įterptas į pagrindinį šabloną 'base/main.html' -->
+
+<div class="header-bar">
+    <!-- Nuoroda grįžti atgal į užduočių sąrašo puslapį -->
+    <a href="{% url 'tasks' %}">&#8592; Atgal</a>
+</div>
+
+<div class="card-body">
+    <form method="POST" action=""> <!-- Forma, skirta duomenų pateikimui. Kai forma bus pateikta, duomenys bus siunčiami POST metodu -->
+        
+        {% csrf_token %} <!-- Saugumo elementas, padedantis apsisaugoti nuo tam tikrų internetinių atakų (CSRF atakų) -->
+
+        <!-- Čia formos laukai bus atvaizduojami naudojant Django formų sistemos funkcionalumą. Kiekvienas laukas bus atvaizduojamas kaip atskiras paragrafas -->
+        {{form.as_p}}
+        
+        <!-- Mygtukas, skirtas patvirtinti formos pateikimą -->
+        <input class="button" type="submit" value="Pateikti">
+    </form>
+</div>
+
+{% endblock content %} <!-- Baigiasi turinio blokas -->

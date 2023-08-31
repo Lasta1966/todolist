@@ -1,0 +1,18 @@
+{% extends 'base/main.html' %}  {# Šis kodo fragmentas nurodo, kad šis šablonas paveldi iš 'base/main.html' šablono. Viskas, kas yra 'base/main.html', bus taip pat rodoma šiame šablone, išskyrus tai, kas bus perrašyta naudojant "block" žymas. #}
+
+{% block content %}  {# Pradeda bloką pavadinimu "content". Tai yra vieta, kurioje bus įterptas šio šablono turinys, jei bazinis šablonas 'base/main.html' turi atitinkamą "block" žymą. #}
+
+<div class="header-bar">
+    <h1>Prisijungti</h1>  {# Antraštė "Prisijungti" #}
+</div>
+
+<div class="card-body">  {# "card-body" klasės konteineris, kuris apjungia prisijungimo formą ir nuorodą į registracijos puslapį #}
+    <form method="POSt" action="">  {# Pradeda formą, kuri siunčia duomenis naudojant POST metodą į dabartinį URL adresą (action yra tuščias) #}
+        {% csrf_token %}  {# CSRF žetonas užtikrina saugumą nuo "cross-site request forgery" atakų. Būtina naudoti kiekvienoje Django formoje, kuri siunčia duomenis per POST. #}
+        {{form.as_p}}  {# Rodo formos laukus pateikiant juos kaip paragrafus (<p> elementai). Šiuo atveju formą gali teikti Django forma, kuri buvo perduota per kontekstą. #}
+        <input class="button" value="Prisijungti" type="submit">  {# Mygtukas, skirtas formos duomenų siuntimui. #}
+    </form>
+    <p>Neturite paskyros? <a href="{% url 'register' %}">Registruotis</a></p>  {# Nuoroda, kuri nukreipia vartotoją į registracijos puslapį. "url" žyma naudojama, kad automatiškai sugeneruotų nuorodą į 'register' vardo URL adresą. #}
+</div>
+
+{% endblock content %}  {# Baigia "content" bloką. #}

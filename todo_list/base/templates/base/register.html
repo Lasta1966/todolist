@@ -1,0 +1,34 @@
+{% extends 'base/main.html' %} <!-- Šis šablonas išplečia 'base/main.html'. Tai reiškia, kad šis šablonas paveldės 'base/main.html' struktūrą ir stilių -->
+
+{% block content %} <!-- Prasideda turinio blokas, kuris bus įterptas į pagrindinį šabloną 'base/main.html' -->
+
+<div class="header-bar">
+    <h1>Registruotis</h1> <!-- Antraštė, nurodanti, kad čia yra registracijos forma -->
+</div>
+
+<div class="card-body">
+    <form method="POSt" action=""> <!-- Forma skirta registracijai, kurios duomenys bus siunčiami POST metodu -->
+        
+        {% csrf_token %} <!-- Saugumo elementas, kuris padeda apsisaugoti nuo tam tikrų internetinių atakų (CSRF atakų) -->
+
+        <!-- Žyma ir įvesties laukelis vartotojo vardui įvesti -->
+        <label for="">{{form.username.label}}</label>
+        {{form.username}}
+
+        <!-- Žyma ir slaptažodžio įvesties laukelis -->
+        <label for="">{{form.password1.label}}</label>
+        {{form.password1}}
+
+        <!-- Žyma ir įvesties laukelis slaptažodžio patvirtinimui -->
+        <label for="">{{form.password2.label}}</label>
+        {{form.password2}}
+
+        <!-- Registracijos mygtukas -->
+        <input style="margin-top:10px;" class="button" value="Registruotis" type="submit">
+    </form>
+    
+    <!-- Nuoroda prisijungti, jei vartotojas jau turi paskyrą -->
+    <p>Turite paskyra? <a href="{% url 'login' %}">Prisijungti</a></p>
+</div>
+
+{% endblock content %} <!-- Baigiasi turinio blokas -->
